@@ -10,7 +10,7 @@ public class Main
     {
         
         Climber test = new Climber(8);
-        test.printBoard(true);
+        test.printBoard();
 
     }
 }

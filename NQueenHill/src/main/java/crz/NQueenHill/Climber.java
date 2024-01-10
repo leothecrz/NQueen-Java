@@ -23,11 +23,11 @@ public class Climber
         this.stepsLimit = stepLimit;
         
         clearBoard();
-        printBoard(false);
+        printBoard();
         System.out.println();
 
         randomizeBoard();
-        printBoard(false);
+        printBoard();
         System.out.println();
     }
  
@@ -42,16 +42,13 @@ public class Climber
         }
     }
 
-    public void printBoard(boolean R)
+    public void printBoard()
     {
         System.out.println("Board: ");
         for(int i=0; i<N; i++)
         {
-            for(int j=0; j<N; j++)    
-                if(R)
+            for(int j=0; j<N; j++)
                     System.out.print(board[i][j] + ", " );
-                else
-                    System.out.print(board[j][i] + ", " );
             System.out.println();
     
         }
@@ -90,7 +87,7 @@ public class Climber
     }
 
 
-    private int countAttackingQueens()
+    public int countAttackingQueens()
     {
 
         int pairs = 0;
@@ -103,13 +100,23 @@ public class Climber
             for(int j=0; j<N; i++)
             {
                 //Check Row
-                if (board[i][j] > i)
+                if (board[i][j] > currentQueen)
                    pairs++;
             }
 
+            int startRow = rowNum;
+            int startCol = i;
+            // Main Diagonal 1,1
+            while( ( (startCol >= 0 ) && (startCol < N) ) && ( (startRow >= 0) && (startRow < N) ) )
+            {
 
+                if(board[startCol][startRow] > currentQueen)
+                    System.out.println("Attacking");
+                    
 
-
+                startRow += 1;
+                startCol += 1;
+            }
 
             
         }
